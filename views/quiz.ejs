@@ -1,0 +1,85 @@
+<%- include('partials/header.ejs') %>
+<link rel="stylesheet" href="/css/quiz.css">
+<body>
+    <%- include('partials/navbar.ejs') %>
+    <div class="container">
+        <div class="user">
+            <img src="/img/user.png"/>
+            <span class><%= player.nome %></span>
+        </div>
+        <h2>Quiz Conhecimentos Gerais</h2>
+        <a href="/ranking">Ranking</a>
+
+        <button class="btn btn-outline-danger btn-iniciar" onclick="iniciarQuiz()">Iniciar</button>
+
+        <div class="card card-principal">
+            <div class="card-header mb-1">
+                <h3 id="pergunta"> <!--|||--> </h3>
+            </div>
+            <div class="card-body">
+                <!-- CARD 01 - A) -->
+                <div class="card option-question option-question-a" onclick="escolherOpcao(this, 'a')">
+                    <div class="row no-gutters">
+                        <div class="col-md-3 bg-primary">
+                          A
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card-body alts" id="alt_a">
+                                <!--|||-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CARD 02 - B) -->
+                <div class="card option-question option-question-b" onclick="escolherOpcao(this, 'b')">
+                    <div class="row no-gutters">
+                        <div class="col-md-3 bg-primary">
+                          B
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card-body alts" id="alt_b">
+                                <!--|||-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/><br/>
+                <!-- CARD 03 - C) -->
+                <div class="card option-question option-question-c" onclick="escolherOpcao(this, 'c')">
+                    <div class="row no-gutters">
+                        <div class="col-md-3 bg-primary">
+                          C
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card-body alts" id="alt_c">
+                                <!--|||-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 04 - D) -->
+                <div class="card option-question option-question-d" onclick="escolherOpcao(this, 'd')">
+                    <div class="row no-gutters">
+                        <div class="col-md-3 bg-primary">
+                          D
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card-body alts" id="alt_d">
+                                <!--|||-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form>
+            <input type="hidden" name="idUsuario" id="idUsuario" value="<%= player.id %>">
+        </form>
+        <button type="button" class="btn btn-success btn-proximo" onclick="proxima()">Próxima</button>
+    </div>
+
+    <script src="/script/quizQuestions.js"></script>
+</body>
+<%- include('partials/footer.ejs') %>

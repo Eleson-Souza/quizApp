@@ -1,0 +1,9 @@
+body {
+    font-size: 14pt;
+    background-color: #eeeeee;
+}
+
+.card-header {
+    background-color: #df3131;
+    color: #fff;
+}

@@ -1,0 +1,46 @@
+<%- include('partials/header.ejs') %>
+<link rel="stylesheet" href="/css">
+<body>
+    <%- include('partials/navbar.ejs') %>
+    <div class="container">
+        <h3>Ranking geral</h3>
+
+        <table class="table table-hover table-bordered table-secondary">
+            <thead class="thead-dark">
+                <th>Acertos</th>
+                <th>Questões</th>
+                <th>Aproveitamento</th>
+                <th>Usuário</th>
+            </thead>
+            <tbody>
+                <% resultado.forEach(result => { %>            
+                    <tr>
+                        <td> <%= result.acertos %> </td>
+                        <td> <%= result.questoes %> </td>
+                        <td> <%= result.aproveitamento %>% </td>
+                        <td> <%= result.idPlayer %> </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        
+
+        
+            <div class="col">
+
+            </div>
+            <div class="col">
+                
+            </div>
+            <div class="col">
+                
+            </div>
+            <div class="col">
+                
+            </div>
+            <div class="col">
+                
+            </div>
+    </div>
+</body>
+<%- include('partials/footer.ejs') %>

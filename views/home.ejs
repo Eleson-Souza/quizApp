@@ -1,0 +1,29 @@
+<%- include('partials/header.ejs') %>
+<link rel="stylesheet" href="/css/homeStyle.css">
+<body>
+    <%- include('partials/navbar.ejs') %>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2>Acesse o Quiz</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/quiz">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="senha" placeholder="Email de usuário" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="senha">Senha</label>
+                        <input type="password" name="senha" id="senha" placeholder="Senha" class="form-control" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-success entrar">Entrar</button>
+
+                    <a href="/novo-usuario" class="nova_conta">Criar nova conta.</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<%- include('partials/footer.ejs') %>

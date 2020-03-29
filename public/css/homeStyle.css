@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.card {
+    width: 40%;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.63);
+}
+
+/*.card-body {
+    background: url('/img/quiz.webp');
+    background-size: cover;
+}*/
+
+.entrar {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 14pt;
+}
+
+.nova_conta {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 12pt;
+}

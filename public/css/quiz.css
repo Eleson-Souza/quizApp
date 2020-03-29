@@ -1,0 +1,79 @@
+.user {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    float: right;
+    margin-top: 6px;
+}
+.user img {
+    width: 35px;
+    border: 1px solid #000;
+    border-radius: 17.5px;
+}
+span {
+    margin-left: 5px;
+    font-size: 14pt;
+}
+
+.option-question{
+    display: inline-block;
+    width: 531px;
+    cursor: pointer;
+    background-color: #fff;
+    font-size: 14pt;
+    transition: all .5s linear;
+}
+
+.option-question:hover {
+    border-color: #007bff;
+    background-color: #bed0e4;
+    font-size: 15pt;
+}
+
+.alts {
+    color: #000;
+}
+
+.col-md-3, .col-md-3 {
+    padding: 20px 0px;
+    text-align: center;
+    font-size: 20pt;
+    color: #fff;
+}
+
+button {
+    margin-top: 10px;
+    width: 190px;   
+    height: 60px;
+    position: relative;
+    left: calc(50% - 95px);
+}
+
+.card-principal, .btn-proximo {
+    display: none;
+}
+
+.btn-iniciar {
+    width: 250px;
+    height: 79px;
+    font-size: 24pt;
+    position: absolute;
+    top: 300px;
+}
+
+.correta {
+    background-color: #48bd65 !important;
+    transition: all .5s linear;
+}
+
+.errada {
+    background-color: #c25a5a !important;
+    transition: all .5s linear;
+}
+
+.desabilita-campo {
+    pointer-events: none;
+    display: inline-block;
+    width: 531px;
+    background-color: #a1a1a1;
+}

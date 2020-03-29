@@ -1,0 +1,21 @@
+<%- include('partials/header.ejs') %>
+<link rel="stylesheet" href="/css/resultado.css">
+<body>
+    <%- include('partials/navbar.ejs') %>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2>Resultado Final</h2>
+            </div>
+            <div class="card-body">
+                <h3>Você acertou <%= quantAcertos %> de <%= quantQuestoes %>!</h3>
+                <h4>Total aproveitamento: <%= aproveitamento %>%</h4>
+                <br>
+                <a href="/quiz/<%= idUsuario %>">
+                    <h5>Jogar novamente?</h5>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+<%- include('partials/footer.ejs') %>
