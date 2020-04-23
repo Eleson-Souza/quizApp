@@ -1,0 +1,85 @@
+<%- include('../partials/header.ejs') %>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+    <div class="container">
+        <div class="card mt-3">
+            <div class="card-header">
+                <h2>Edição da Pergunta</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/pergunta/update/<%= question.id %>">
+                    <label for="question">Descrição da pergunta:</label>
+                    <textarea name="question" id="question" class="form-control mb-3"><%= question.pergunta %></textarea>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">A</span>
+                        </div>
+                        <input type="text" name="altA" id="alt-a" class="form-control" value="<%= question.alternativa_a %>">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">B</span>
+                        </div>
+                        <input type="text" name="altB" id="alt-b" class="form-control" value="<%= question.alternativa_b %>">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">C</span>
+                        </div>
+                        <input type="text" name="altC" id="alt-c" class="form-control" value="<%= question.alternativa_c %>">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">D</span>
+                        </div>
+                        <input type="text" name="altD" id="alt-d" class="form-control" value="<%= question.alternativa_d %>">
+                    </div>
+
+                    <label for="alt_correta">Alternativa correta:</label>
+                    <select name="altCorreta" id="alt_correta" class="form-control mb-3">
+                        <% if(question.alternativa_correta == 'A') { %>
+                            <option value="A" selected>A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                        <% } else if(question.alternativa_correta == 'B') { %>
+                            <option value="A">A</option>
+                            <option value="B" selected>B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                        <% } else if(question.alternativa_correta == 'C') { %>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C" selected>C</option>
+                            <option value="D">D</option>
+                        <% } else if(question.alternativa_correta == 'D') { %>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D" selected>D</option>
+                        <% } %>
+                    </select>
+
+                    <label for="category">Categoria da pergunta:</label>
+                    <select name="category" id="category" class="form-control mb-3">
+                        <% categories.forEach(category => { %>
+                            <% if(category.id == question.categoryQuestionId) { %>0
+                                <option value="<%= category.id %>" selected><%= category.nome %></option>
+                            <% } else { %>
+                                <option value="<%= category.id %>"><%= category.nome %></option>
+                            <% } %>
+                        <% }); %>
+                    </select>
+
+                    <button type="reset" class="btn btn-danger">Limpar</button>
+                    <button type="submit" class="btn btn-success">Atualizar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<%- include('../partials/footer.ejs') %>

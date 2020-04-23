@@ -1,0 +1,35 @@
+<%- include('../partials/header.ejs') %>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+    <div class="container">
+        <h2 class="mt-3">Todas as perguntas</h2>
+        <a href="pergunta/nova" class="btn btn-success mt-3">Criar nova pergunta</a>
+
+        <% questions.forEach(question => { %>
+            <div class="card mt-3">
+                <div class="card-header">
+                    <strong><%= question.pergunta %></strong>
+                </div>
+                <div class="card-body">
+                    <span class="mr-3">A) <%= question.alternativa_a %></span>
+                    <span class="mr-3">B) <%= question.alternativa_b %></span>
+                    <span class="mr-3">C) <%= question.alternativa_c %></span>
+                    <span class="mr-3">D) <%= question.alternativa_d %></span>
+                    <br/>
+                    <small>Alternativa Correta: <%= question.alternativa_correta %></small>
+                    <br/>
+                    <small>Categoria: <%= question.category_question.nome %></small>
+                </div>
+                <div class="card-footer">
+                    <a href="/pergunta/update/<%= question.id %>" class="btn btn-warning">Editar</a>
+                    <form action="/pergunta/delete" method="post" style="display: inline;" onsubmit="confirmarDelecaoPergunta(event, this)">
+                        <input type="hidden" name="id" value="<%= question.id %>">
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                    </form>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</body>
+<script src="/script/deleteItem.js"></script>
+<%- include('../partials/footer.ejs') %>
