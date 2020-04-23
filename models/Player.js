@@ -16,6 +16,6 @@ const Player = connection.define('player', {
     }
 });
 
-Player.sync({force: false});
+//Player.sync({force: true});
 
 module.exports = Player;

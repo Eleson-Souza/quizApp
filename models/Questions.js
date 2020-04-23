@@ -1,5 +1,6 @@
 const sequelize = require('sequelize');
 const connection = require('../database/connection');
+const CategoryQuestion = require('./CategoryQuestion');
 
 const Questions = connection.define('questions', {
     pergunta: {
@@ -28,6 +29,8 @@ const Questions = connection.define('questions', {
     }
 });
 
-Questions.sync({force: false});
+CategoryQuestion.hasMany(Questions);
+Questions.belongsTo(CategoryQuestion);
+//Questions.sync({force: true});
 
 module.exports = Questions;

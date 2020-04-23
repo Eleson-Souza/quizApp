@@ -1,10 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const router = require('./routes/router');
 const connection = require('./database/connection');
-const Player = require('./models/Player');
-const Questions = require('./models/Questions')
-const Resultado = require('./models/Resultado');
+const homeController = require('./controllers/homeController');
+const playerController = require('./controllers/playerController');
+const questionController = require('./controllers/questionController')
+const resultController = require('./controllers/resultController');
+const categoryQuestionController = require('./controllers/categoryQuestionController');
 const app = express();
 
 // Configuração template engine EJS
@@ -25,7 +26,11 @@ connection
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.use('/', router);
+app.use('/', homeController);
+app.use('/', playerController);
+app.use('/', questionController);
+app.use('/', resultController);
+app.use('/', categoryQuestionController);
 
 const server = app.listen(1010, (erro) => {
     if(erro) {
@@ -33,4 +38,4 @@ const server = app.listen(1010, (erro) => {
     } else {
         console.log(`Aplicação rodando na porta ${server.address().port}`);
     }
-})
+});

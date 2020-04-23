@@ -7,18 +7,18 @@
 
         <table class="table table-hover table-bordered table-secondary">
             <thead class="thead-dark">
+                <th>Usuário</th>
                 <th>Acertos</th>
                 <th>Questões</th>
                 <th>Aproveitamento</th>
-                <th>Usuário</th>
             </thead>
             <tbody>
                 <% resultado.forEach(result => { %>            
                     <tr>
+                        <td> <%= result.player.nome %> </td>
                         <td> <%= result.acertos %> </td>
                         <td> <%= result.questoes %> </td>
                         <td> <%= result.aproveitamento %>% </td>
-                        <td> <%= result.idPlayer %> </td>
                     </tr>
                 <% }) %>
             </tbody>
