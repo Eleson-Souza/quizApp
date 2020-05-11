@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Questions = require('../models/Questions');
 const Category = require('../models/CategoryQuestion');
+const permissaoAcesso = require('../middlewares/permissaoAcesso');
 
-router.get('/perguntas', function(req, res) {
+router.get('/perguntas', permissaoAcesso, function(req, res) {
     Questions.findAll({
         include: [{model: Category}],
         order: [
@@ -15,13 +16,13 @@ router.get('/perguntas', function(req, res) {
     });
 });
 
-router.get('/pergunta/nova', (req, res) => {
+router.get('/pergunta/nova', permissaoAcesso, (req, res) => {
     Category.findAll({order: [["nome", "asc"]]}).then(categories => {
         res.render('question/new', { categories });
     });
 });
 
-router.post('/pergunta/nova', (req, res) => {
+router.post('/pergunta/nova', permissaoAcesso, (req, res) => {
     var question = req.body.question;
     var altA = req.body.altA;
     var altB = req.body.altB;
@@ -48,7 +49,7 @@ router.post('/pergunta/nova', (req, res) => {
     }
 });
 
-router.post('/pergunta/delete', (req, res) => {
+router.post('/pergunta/delete', permissaoAcesso, (req, res) => {
     var id = req.body.id;
 
     Questions.destroy({
@@ -60,7 +61,7 @@ router.post('/pergunta/delete', (req, res) => {
     });
 });
 
-router.get('/pergunta/update/:id', (req, res) => {
+router.get('/pergunta/update/:id', permissaoAcesso, (req, res) => {
     var id = req.params.id;
     Questions.findByPk(id).then(question => {
         Category.findAll().then(categories => {
@@ -69,7 +70,7 @@ router.get('/pergunta/update/:id', (req, res) => {
     });
 });
 
-router.post('/pergunta/update/:id', (req, res) => {
+router.post('/pergunta/update/:id', permissaoAcesso, (req, res) => {
     var id = req.params.id;
     var question = req.body.question;
     var altA = req.body.altA;

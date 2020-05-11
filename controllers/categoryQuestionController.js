@@ -3,14 +3,15 @@ const router = express.Router();
 const Category = require('../models/CategoryQuestion');
 const connection = require('../database/connection');
 const slugify = require('slugify');
+const permissaoAcesso = require('../middlewares/permissaoAcesso');
 
-router.get('/categorias', (req, res) => {
+router.get('/categorias', permissaoAcesso, (req, res) => {
     connection.query('select * from category_questions order by id desc', { model: Category }).then((categories) => {
         res.render('category/index', { categories });
     });
 });
 
-router.get('/categoria/nova', (req, res) => {
+router.get('/categoria/nova', permissaoAcesso, (req, res) => {
     res.render('category/new');
 });
 
@@ -29,7 +30,7 @@ router.post('/categoria/nova', (req, res) => {
     }
 });
 
-router.post('/categoria/delete', (req, res) => {
+router.post('/categoria/delete', permissaoAcesso, (req, res) => {
     var id = req.body.id;
     connection.query('delete from category_questions where id = ?', {
         replacements: [id]
@@ -38,7 +39,7 @@ router.post('/categoria/delete', (req, res) => {
     });
 });
 
-router.get('/categoria/update/:id', (req, res) => {
+router.get('/categoria/update/:id', permissaoAcesso, (req, res) => {
     var id = req.params.id;
     connection.query('select * from category_questions where id = :id', {
         replacements: { id: id },
@@ -48,7 +49,7 @@ router.get('/categoria/update/:id', (req, res) => {
     });
 });
 
-router.post('/categoria/update', (req, res) => {
+router.post('/categoria/update', permissaoAcesso, (req, res) => {
     var id = req.body.id;
     var name = req.body.name;
     var slug = slugify(req.body.name);

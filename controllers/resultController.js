@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Result = require('../models/Results');
 const Player = require('../models/Player');
+const permissaoAcesso = require('../middlewares/permissaoAcesso');
 
-router.post('/resultado', (req, res) => {
+router.post('/resultado', permissaoAcesso, (req, res) => {
     let acertos = req.body.acertos;
     let quantQuestoes = req.body.numQuestoes;
     let aproveitamento = ((acertos / quantQuestoes) * 100).toFixed(2);
@@ -51,7 +52,7 @@ router.post('/resultado', (req, res) => {
     });
 });
 
-router.get('/ranking', (req, res) => {
+router.get('/ranking', permissaoAcesso, (req, res) => {
     Result.findAll({
         order: [
             ['aproveitamento', 'desc']

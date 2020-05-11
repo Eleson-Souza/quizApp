@@ -3,6 +3,7 @@ const router = express.Router();
 const Player = require('../models/Player');
 const Questions = require('../models/Questions');
 const bcrypt = require('bcryptjs');
+const permissaoAcesso = require('../middlewares/permissaoAcesso');
 
 router.get('/novo-usuario', (req, res) => {
     res.render('player/newUser');
@@ -32,7 +33,7 @@ router.post('/novo-usuario', (req, res) => {
 });
 
 var offset = -1;
-router.get('/quiz/:user_id/:question_num', (req, res) => {
+router.get('/quiz/:user_id/:question_num', permissaoAcesso, (req, res) => {
     let id = (req.params.user_id).split('-')[1];
     let numQuestion = (req.params.question_num).split('-')[1];
 

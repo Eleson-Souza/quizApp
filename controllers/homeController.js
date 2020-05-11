@@ -1,12 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const permissaoAcesso = require('../middlewares/permissaoAcesso');
 
-router.get('/', (req, res) => {
-    if(req.session.player) {
-        res.render('homeQuiz', { player: req.session.player });
-    } else {
-        res.redirect('/login');
-    }
+router.get('/', permissaoAcesso, (req, res) => {
+    res.render('homeQuiz', { player: req.session.player });
 });
 
 module.exports = router;
