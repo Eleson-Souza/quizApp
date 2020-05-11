@@ -3,11 +3,11 @@ const router = express.Router();
 const Result = require('../models/Results');
 const Player = require('../models/Player');
 
-router.get('/resultado/:id/:acertos/:quantQuestoes', (req, res) => {
-    let acertos = req.params.acertos;
-    let quantQuestoes = req.params.quantQuestoes;
+router.post('/resultado', (req, res) => {
+    let acertos = req.body.acertos;
+    let quantQuestoes = req.body.numQuestoes;
     let aproveitamento = ((acertos / quantQuestoes) * 100).toFixed(2);
-    let idUsuario = req.params.id;
+    let idUsuario = req.body.idUsuario;
 
     Result.findOne({ // Verifica se o usuario já possui alguma pontuação daquele questionário salvo no banco.
         where: {
@@ -39,11 +39,14 @@ router.get('/resultado/:id/:acertos/:quantQuestoes', (req, res) => {
             });
         }
 
-        res.render('resultado', { // renderiza a view resultado, passando as informações.
-            quantAcertos: acertos, 
-            quantQuestoes: quantQuestoes,
-            aproveitamento: aproveitamento,
-            idUsuario: idUsuario
+        Player.findByPk(idUsuario).then(player => {
+            res.render('results/resultado', { // renderiza a view resultado, passando as informações.
+                acertos: acertos, 
+                quantQuestoes: quantQuestoes,
+                aproveitamento: aproveitamento,
+                idUsuario: idUsuario,
+                player: player
+            });
         });
     });
 });
@@ -56,7 +59,8 @@ router.get('/ranking', (req, res) => {
         include: [{model: Player}],
         limit: 10
     }).then(resultado => {
-        res.render('ranking', { resultado });
+        res.render('results/ranking', { resultado });
+        //res.json(resultado);
     });
 });
 

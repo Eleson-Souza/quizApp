@@ -10,74 +10,85 @@
         <h2>Quiz Conhecimentos Gerais</h2>
         <a href="/ranking">Ranking</a>
 
-        <button class="btn btn-outline-danger btn-iniciar" onclick="iniciarQuiz()">Iniciar</button>
-
-        <div class="card card-principal">
+        <div class="card card-principal mt-5">
             <div class="card-header mb-1">
-                <h3 id="pergunta"> <!--|||--> </h3>
+                <h3 id="pergunta"><%= result.question %>. <%= result.questions.rows[0].pergunta %> </h3>
             </div>
             <div class="card-body">
                 <!-- CARD 01 - A) -->
-                <div class="card option-question option-question-a" onclick="escolherOpcao(this, 'a')">
+                <div class="card option-question option-question-a" id="alt_a" onclick="escolherOpcao(this, 'A')">
                     <div class="row no-gutters">
                         <div class="col-md-3 bg-primary">
                           A
                         </div>
                         <div class="col-md-9">
-                            <div class="card-body alts" id="alt_a">
-                                <!--|||-->
+                            <div class="card-body alts">
+                                <%= result.questions.rows[0].alternativa_a %>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- CARD 02 - B) -->
-                <div class="card option-question option-question-b" onclick="escolherOpcao(this, 'b')">
+                <div class="card option-question option-question-b" id="alt_b" onclick="escolherOpcao(this, 'B')">
                     <div class="row no-gutters">
                         <div class="col-md-3 bg-primary">
                           B
                         </div>
                         <div class="col-md-9">
-                            <div class="card-body alts" id="alt_b">
-                                <!--|||-->
+                            <div class="card-body alts">
+                                <%= result.questions.rows[0].alternativa_b %>
                             </div>
                         </div>
                     </div>
                 </div>
                 <br/><br/>
                 <!-- CARD 03 - C) -->
-                <div class="card option-question option-question-c" onclick="escolherOpcao(this, 'c')">
+                <div class="card option-question option-question-c" id="alt_c" onclick="escolherOpcao(this, 'C')">
                     <div class="row no-gutters">
                         <div class="col-md-3 bg-primary">
                           C
                         </div>
                         <div class="col-md-9">
-                            <div class="card-body alts" id="alt_c">
-                                <!--|||-->
+                            <div class="card-body alts">
+                                <%= result.questions.rows[0].alternativa_c %>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- CARD 04 - D) -->
-                <div class="card option-question option-question-d" onclick="escolherOpcao(this, 'd')">
+                <div class="card option-question option-question-d" id="alt_d" onclick="escolherOpcao(this, 'D')">
                     <div class="row no-gutters">
                         <div class="col-md-3 bg-primary">
                           D
                         </div>
                         <div class="col-md-9">
-                            <div class="card-body alts" id="alt_d">
-                                <!--|||-->
+                            <div class="card-body alts">
+                                <%= result.questions.rows[0].alternativa_d %>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <form>
+                    <input type="hidden" id="altCorreta" value="<%= result.questions.rows[0].alternativa_correta %>">
+                </form>
+
             </div>
         </div>
-        <form>
+        <form method="POST" action="/resultado">
             <input type="hidden" name="idUsuario" id="idUsuario" value="<%= player.id %>">
+            <input type="hidden" name="questaoAtual" id="questaoAtual" value="<%= result.question %>">
+            <input type="hidden" name="acertos" id="acertos">
+            <input type="hidden" name="numQuestoes" id="numQuestoes" value="<%= result.questions.count %>">
+
+            <% if(result.next) { %>
+                <a href="/quiz/user-<%= player.id %>/question-<%= result.question += 1 %>" type="button" class="btn btn-success btn-proximo mt-3 btn-quiz">Próxima >></a>
+            <% } else { %>
+                <button type="submit" class="btn btn-success btn-proximo mt-3 btn-quiz">Finalizar</a>
+            <% } %>
         </form>
-        <button type="button" class="btn btn-success btn-proximo" onclick="proxima()">Próxima</button>
     </div>
 
     <script src="/script/quizQuestions.js"></script>

@@ -16,7 +16,7 @@ router.get('/perguntas', function(req, res) {
 });
 
 router.get('/pergunta/nova', (req, res) => {
-    Category.findAll().then(categories => {
+    Category.findAll({order: [["nome", "asc"]]}).then(categories => {
         res.render('question/new', { categories });
     });
 });

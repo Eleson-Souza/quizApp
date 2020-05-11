@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 const connection = require('./database/connection');
 const homeController = require('./controllers/homeController');
 const playerController = require('./controllers/playerController');
@@ -11,6 +12,12 @@ const app = express();
 // Configuração template engine EJS
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+
+// Configuração do session
+app.use(session({
+    secret: 'senhaSecretSession',
+    cookie: {maxAge: 3600000}, // tempo de expiração da sessão
+}));
 
 // Conexão com o banco de dados
 connection
