@@ -88,7 +88,7 @@ router.post('/login', (req, res) => {
                 setTimeout(() => {
                     req.session.player = {
                         id: player.id,
-                        name: player.nome,
+                        nome: player.nome,
                         email: player.email
                     }
                     res.render('homeQuiz', { player: req.session.player });         
